@@ -28,7 +28,7 @@ public class SeePending extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();	
 		request.getRequestDispatcher("managermainpage.html").include(request, response);
-		out.print("<table><tr><th>Ticket Id</th><th>Employee Id</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
+		out.print("<table border='1'><tr><th>Ticket Id</th><th>Employee Id</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
 		for(int i=0;i<ticketList.size();i++) {
 			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + ticketList.get(i).getAuthorId() + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td></tr>");
 			

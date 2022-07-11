@@ -1,10 +1,9 @@
-package com.revature.manageprogram;
+package com.revature.utils;
 
 import java.util.List;
 import java.util.Scanner;
 
 import com.revature.objects.Employee;
-import com.revature.utils.EmployeeDatabase;
 
 public class EmployeeInteractions {
 	EmployeeDatabase empPost = new EmployeeDatabase();

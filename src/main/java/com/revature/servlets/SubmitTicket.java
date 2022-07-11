@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.manageprogram.EmployeeInteractions;
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
+import com.revature.utils.EmployeeInteractions;
 import com.revature.utils.TicketDatabase;
 
 /**

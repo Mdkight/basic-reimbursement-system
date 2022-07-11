@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.manageprogram.EmployeeInteractions;
 import com.revature.objects.Employee;
 import com.revature.utils.EmployeeDatabase;
+import com.revature.utils.EmployeeInteractions;
 
 /**
  * Servlet implementation class Login
