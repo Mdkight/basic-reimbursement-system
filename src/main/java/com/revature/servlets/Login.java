@@ -21,14 +21,14 @@ public class Login extends HttpServlet {
 
 	EmployeeInteractions empInt = new EmployeeInteractions();
 	EmployeeDatabase empDat = new EmployeeDatabase();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("loginPage.html").include(request, response);
 		out.print("<p>I'm sorry, There is a problem with your username or password</p>");
-		
+
 		out.close();
 	}
 
@@ -47,11 +47,11 @@ public class Login extends HttpServlet {
 
 			} else {
 				request.getRequestDispatcher("employeemainPage.html").forward(request, response);
-				
+
 			}
 
 		} else {
-			doGet(request,response);
+			doGet(request, response);
 		}
 
 	}
