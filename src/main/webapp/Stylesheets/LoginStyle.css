@@ -1,0 +1,12 @@
+@charset "ISO-8859-1";
+
+body{
+	background-color: #F0F8FF;
+}
+
+#topHead, #loginForm, #newAccount{
+	width: 500px;
+	margin: auto;
+	border: 2px solid #037875;
+}
+
