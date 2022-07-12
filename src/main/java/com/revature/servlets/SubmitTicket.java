@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
 import com.revature.utils.EmployeeDatabase;
-import com.revature.utils.EmployeeInteractions;
 import com.revature.utils.TicketDatabase;
 
 /**
@@ -20,7 +19,7 @@ import com.revature.utils.TicketDatabase;
  */
 public class SubmitTicket extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EmployeeInteractions empInt = new EmployeeInteractions();
+
 	EmployeeDatabase empPost = new EmployeeDatabase();
 
 	/**
