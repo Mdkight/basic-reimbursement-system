@@ -32,7 +32,7 @@ public class TicketDatabase {
 			submitTicket.setTimestamp(6, now);
 			submitTicket.setInt(7, newTicket.getAuthorId());
 
-			submitTicket.executeQuery();
+			submitTicket.execute();
 			return true;
 			
 		} catch (SQLException e) {

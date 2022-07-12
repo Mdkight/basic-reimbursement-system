@@ -35,6 +35,7 @@ public class GetMyTickets extends HttpServlet {
 		request.getRequestDispatcher("employeemainPage.html").include(request, response);
 		out.print("<table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Accepted?</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
 		
+		try {
 		if(whichSubmissions.equalsIgnoreCase("pending")) {
 			someTickets(request, response, false);
 		}else if(whichSubmissions.equalsIgnoreCase("resolved")) {
@@ -44,9 +45,12 @@ public class GetMyTickets extends HttpServlet {
 		}
 
 		out.print("</table>");
-		
-		
+		}catch(NullPointerException e) {
+			e.getStackTrace();
+			out.print("<br><p>No Tickets Found</p>");
+		}
 	}
+	
 	
 	private void allTickets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		Employee currentUser = EmployeeInteractions.loggedInUser;
