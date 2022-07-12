@@ -9,6 +9,7 @@ import javax.servlet.descriptor.JspPropertyGroupDescriptor;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
@@ -49,7 +50,8 @@ public class GetMyTickets extends HttpServlet {
 	}
 	
 	private void allTickets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		Employee currentUser = EmployeeInteractions.loggedInUser;
+		HttpSession session = request.getSession();
+		Employee currentUser = empPost.getEmployee((String)session.getAttribute("username"));
 		TicketDatabase tickDat=new TicketDatabase();
 		ArrayList<Ticket> ticketList= tickDat.findAllMyTickets(currentUser);
 		String approvalStatus="foo";
@@ -72,7 +74,8 @@ public class GetMyTickets extends HttpServlet {
 	}
 	
 	private void someTickets(HttpServletRequest request, HttpServletResponse response, boolean resolvedStatus) throws ServletException, IOException{
-		Employee currentUser = EmployeeInteractions.loggedInUser;
+		HttpSession session = request.getSession();
+		Employee currentUser = empPost.getEmployee((String)session.getAttribute("username"));
 		TicketDatabase tickDat=new TicketDatabase();
 		ArrayList<Ticket> ticketList= tickDat.findMyTickets(currentUser, resolvedStatus);
 		String approvalStatus="foo";
