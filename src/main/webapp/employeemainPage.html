@@ -31,9 +31,13 @@
                 <input type="submit"  value="Submit New Ticket">
             </fieldset>
         </form>
-        <br><br>
+        <br><hr><br>
         <h3>See Previously Submitted Tickets</h3>
+        
         <form action="GetMyTickets" method="GET">
+        	<input  type="radio" name="whichSubmissions" value="All">All
+        	<input  type="radio" name="whichSubmissions" value="Pending">Pending
+        	<input  type="radio" name="whichSubmissions" value="Resolved">Resolved
             <input type="submit" value="See Previous Submissions" />
         </form>
 </body>

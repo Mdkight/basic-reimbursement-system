@@ -73,7 +73,40 @@ public class TicketDatabase {
 		return null;
 	}
 
-	public ArrayList<Ticket> findMyTickets(Employee emp) {
+	public ArrayList<Ticket> findMyTickets(Employee emp, boolean resolvedStatus) {
+		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
+		Ticket ticket = new Ticket();
+		try {
+			Connection conn = ConnectionUtils.getInstance().getConnection();
+			PreparedStatement fetchTickets = conn
+					.prepareStatement("SELECT * FROM reimbursements where authorid=?, resolved=?");
+			fetchTickets.setInt(1, emp.getUserId());
+			fetchTickets.setBoolean(2, resolvedStatus );
+			ResultSet rs = fetchTickets.executeQuery();
+			while (rs.next()) {
+				ticket.setReimbursementId(rs.getInt(1));
+				ticket.setAccepted(rs.getString(2));
+				ticket.setAmount(rs.getInt(3));
+				ticket.setDescription(rs.getString(4));
+				ticket.setReimbursementType(rs.getString(5));
+				ticket.setResolvedTime(rs.getTimestamp(6));
+				ticket.setResolved(rs.getBoolean(7));
+				ticket.setSubmitTime(rs.getTimestamp(8));
+				ticket.setAuthorId(rs.getInt(9));
+				ticket.setResolverId(rs.getInt(10));
+
+				pendingTickets.add(ticket);
+
+			}
+			return pendingTickets;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pendingTickets;
+	}
+	
+	public ArrayList<Ticket> findAllMyTickets(Employee emp) {
 		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
 		Ticket ticket = new Ticket();
 		try {

@@ -7,10 +7,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.revature.manageprogram.EmployeeInteractions;
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
+import com.revature.utils.EmployeeDatabase;
+import com.revature.utils.EmployeeInteractions;
 import com.revature.utils.TicketDatabase;
 
 /**
@@ -19,6 +21,7 @@ import com.revature.utils.TicketDatabase;
 public class SubmitTicket extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EmployeeInteractions empInt = new EmployeeInteractions();
+	EmployeeDatabase empPost = new EmployeeDatabase();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -30,14 +33,15 @@ public class SubmitTicket extends HttpServlet {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		String description = request.getParameter("description");
 		String reimbursementType = request.getParameter("reimbursementtype");
-		Employee emp = EmployeeInteractions.loggedInUser;
-		Ticket newTicket = new Ticket(amount, description, reimbursementType, false, emp.getUserId());
+		HttpSession session = request.getSession();
+		Employee currentUser = empPost.getEmployee((String)session.getAttribute("username"));
+		Ticket newTicket = new Ticket(amount, description, reimbursementType, false, currentUser.getUserId());
 		boolean success = tickDat.ticketSubmit(newTicket);
 		if (success) {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			request.getRequestDispatcher("employeemainPage.html").include(request, response);
-			out.print("<br><p>New Ticket submitted</p>");
+			out.print("<br><p>New Ticket submitted!</p>");
 			
 		}else {
 			response.setContentType("text/html");

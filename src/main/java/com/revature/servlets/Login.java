@@ -8,10 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.revature.manageprogram.EmployeeInteractions;
 import com.revature.objects.Employee;
 import com.revature.utils.EmployeeDatabase;
+import com.revature.utils.EmployeeInteractions;
 
 /**
  * Servlet implementation class Login
@@ -21,14 +22,14 @@ public class Login extends HttpServlet {
 
 	EmployeeInteractions empInt = new EmployeeInteractions();
 	EmployeeDatabase empDat = new EmployeeDatabase();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("loginPage.html").include(request, response);
 		out.print("<p>I'm sorry, There is a problem with your username or password</p>");
-		
+
 		out.close();
 	}
 
@@ -42,16 +43,18 @@ public class Login extends HttpServlet {
 
 		if (success) {
 			emp = empDat.getEmployee(username);
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
 			if (emp.getUserRole().equals("MANAGER")) {
 				request.getRequestDispatcher("managermainpage.html").forward(request, response);
 
 			} else {
 				request.getRequestDispatcher("employeemainPage.html").forward(request, response);
-				
+
 			}
 
 		} else {
-			doGet(request,response);
+			doGet(request, response);
 		}
 
 	}

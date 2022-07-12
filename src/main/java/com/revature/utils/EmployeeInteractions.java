@@ -1,15 +1,13 @@
-package com.revature.manageprogram;
+package com.revature.utils;
 
-import java.util.List;
 import java.util.Scanner;
 
 import com.revature.objects.Employee;
-import com.revature.utils.EmployeeDatabase;
 
 public class EmployeeInteractions {
 	EmployeeDatabase empPost = new EmployeeDatabase();
 	Scanner scan = new Scanner(System.in);
-	public static Employee loggedInUser;
+
 	
 
 	public boolean login(String username, String password) {
@@ -18,7 +16,6 @@ public class EmployeeInteractions {
 		if (emp == null) {
 			return false;
 		}else if (password.equals(emp.getPassword())) {
-			loggedInUser = emp;
 			return true;
 		} else {
 			return false;
