@@ -4,7 +4,7 @@ body{
 	background-color: #4D7AA1;
 }
 
-#loginBox{
+.centeredBox{
 	background-color: #036178;
 	width: 600px;
 	margin: auto;

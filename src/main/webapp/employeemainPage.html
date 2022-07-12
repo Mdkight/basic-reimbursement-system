@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="Stylesheets/BaseStyle.css">
 </head>
 <body>
-        <!-- <form action="./src/main/webapp/WEB-INF/UI/createreimbursement.html">
+	<!-- <form action="./src/main/webapp/WEB-INF/UI/createreimbursement.html">
             <input type="submit" value="Create new reimbursement ticket"/>
         </form> -->
+	<div class="centeredBox" style="width: 900px">
+		<h3>New Ticket Submission</h3>
+		<form action="SubmitTicket" method="POST">
+			<fieldset style="width: 870px">
+				<label for="reimbursementtype">Expense type</label> <select
+					name="reimbursementtype">
+					<option value="travel">Travel</option>
+					<option value="lodging">Lodging</option>
+					<option value="food">Food</option>
+					<option value="other">Other</option>
+				</select> <label for="amount">Amount</label> <input type="number"
+					name="amount"> <br> <label for="description">Description</label>
+				<textarea maxlength="150" rows="4" cols="50" name="description"
+					placeholder="Enter a brief description here (150 char limit)"></textarea>
+				<br> <input type="submit" value="Submit New Ticket">
+			</fieldset>
+		</form>
+	</div>
+	<br>
+	<br>
+	<div>
+		<h3>See Previously Submitted Tickets</h3>
 
-        <h3>New Ticket Submission</h3>
-        <form action="SubmitTicket" method="POST">
-            <fieldset style="width:900px">
-                <label for="reimbursementtype">Expense type</label>
-                <select name="reimbursementtype">
-                    <option value="travel">Travel</option>
-                    <option value="lodging">Lodging</option>
-                    <option value="food">Food</option>
-                    <option value="other">Other</option>
-                </select>
-                
-                <label for="amount">Amount</label>
-                <input type="number" name="amount">
-                <br>
-                <label for="description">Description</label>
-                <textarea maxlength="150" rows="4" cols="50" name="description" placeholder="Enter a brief description here (150 char limit)"></textarea>
-                <br>
-                <input type="submit"  value="Submit New Ticket">
-            </fieldset>
-        </form>
-        <br><hr><br>
-        <h3>See Previously Submitted Tickets</h3>
-        
-        <form action="GetMyTickets" method="GET">
-        	<input  type="radio" name="whichSubmissions" value="All">All
-        	<input  type="radio" name="whichSubmissions" value="Pending">Pending
-        	<input  type="radio" name="whichSubmissions" value="Resolved">Resolved
-            <input type="submit" value="See Previous Submissions" />
-        </form>
+		<form action="GetMyTickets" method="GET">
+			<input type="radio" name="whichSubmissions" value="All">All <input
+				type="radio" name="whichSubmissions" value="Pending">Pending
+			<input type="radio" name="whichSubmissions" value="Resolved">Resolved
+			<input type="submit" value="See Previous Submissions" />
+		</form>
+	</div>
 </body>
 </html>
