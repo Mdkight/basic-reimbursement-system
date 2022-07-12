@@ -137,6 +137,42 @@ public class EmployeeDatabase{
 		
 	}
 	
+
+	public boolean login(String username, String password) {
+
+		Employee emp = getEmployee(username);
+		if (emp == null) {
+			return false;
+		}else if (password.equals(emp.getPassword())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean newAccount(String username, String password) {
+
+		boolean usernameTaken = isUsernameTaken(username);
+		if (usernameTaken) {
+			return false;
+		} else {
+			Employee newEmp = new Employee();
+			newEmp.setUsername(username);
+			newEmp.setPassword(password);
+			createEmployee(newEmp);
+			return true;
+		}
+
+	}
+
+	public void roleChange() {
+		// TODO Extra features
+	}
+
+	public void userProfile(int userId) {
+		// TODO Extra features
+	}
+	
 	
 
 }

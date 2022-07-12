@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.revature.objects.Employee;
 import com.revature.utils.EmployeeDatabase;
-import com.revature.utils.EmployeeInteractions;
 
 /**
  * Servlet implementation class Login
@@ -20,7 +19,7 @@ import com.revature.utils.EmployeeInteractions;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	EmployeeInteractions empInt = new EmployeeInteractions();
+
 	EmployeeDatabase empDat = new EmployeeDatabase();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +38,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		Employee emp;
 		RequestDispatcher reqDisp;
-		boolean success = empInt.login(username, password);
+		boolean success = empDat.login(username, password);
 
 		if (success) {
 			emp = empDat.getEmployee(username);

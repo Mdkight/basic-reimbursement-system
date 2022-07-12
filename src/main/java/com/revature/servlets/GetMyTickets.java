@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.descriptor.JspPropertyGroupDescriptor;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
 import com.revature.utils.EmployeeDatabase;
-import com.revature.utils.EmployeeInteractions;
 import com.revature.utils.TicketDatabase;
 
 /**
@@ -23,7 +21,7 @@ import com.revature.utils.TicketDatabase;
 public class GetMyTickets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	EmployeeDatabase empPost = new EmployeeDatabase();
-	EmployeeInteractions empInt = new EmployeeInteractions();
+
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
