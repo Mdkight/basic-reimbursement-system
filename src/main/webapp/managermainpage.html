@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="Stylesheets/BaseStyle.css">
 </head>
 <body>
+    <div style="text-align:center;">
     <h2>Manager Dashboard</h2><br><br>
+    </div>
+    <div class="centeredBox">
 <h4>Approve Ticket by Number</h4>
     <form action="ApproveTicket" method="POST">
         <input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber">Ticket Number
+        <br>
         <input type="radio" name="appDen" value="Approve">Approve
         <input type="radio" name="appDen" value="Deny">Deny
         <input type="submit" value="Submit decision">
@@ -19,7 +24,7 @@
     <form action="SeePending" method="GET">
     <input type="submit" id="pending" value="See Pending Tickets">
     </form>
-    
+    </div>
 
     <!-- can add another form to get total spent -->
 

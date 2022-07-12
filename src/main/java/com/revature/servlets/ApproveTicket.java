@@ -19,17 +19,19 @@ public class ApproveTicket extends HttpServlet {
 		int status;
 		String ticketNumber = request.getParameter("ticketNumber");
 		String ticketStatus = request.getParameter("appDen");
+		PrintWriter out = response.getWriter();
+		try {
 		if(ticketStatus.equals("Approve")) {
 			status = tickDat.approveTicket(Integer.parseInt(ticketNumber));
 			if (status>0) {
 				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
+				
 				request.getRequestDispatcher("managermainpage.html").include(request, response);
 				out.print("<br><p>Ticket Approved</p>");
 				
 			}else {
 				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
+			
 				request.getRequestDispatcher("managermainpage.html").include(request, response);
 				out.print("<br><p>Approval failed, please try again later</p>");
 			}
@@ -37,20 +39,28 @@ public class ApproveTicket extends HttpServlet {
 			status = tickDat.declineTicket(Integer.parseInt(ticketNumber));
 			if (status>0) {
 				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
+				
 				request.getRequestDispatcher("managermainpage.html").include(request, response);
 				out.print("<br><p>Ticket Denied</p>");
 				
 			}else {
 				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
+				
 				request.getRequestDispatcher("managermainpage.html").include(request, response);
 				out.print("<br><p>Denial failed, please try again later</p>");
 			}
+		}else {
+			
+			out.print("<br><p>Please enter A Ticket number and Approval decision</p>");
 		}
-		
+		}catch(NullPointerException e) {
+			e.getStackTrace();
+			response.setContentType("text/html");
+			request.getRequestDispatcher("managermainpage.html").include(request, response);
+			out.print("<br><p>Please Enter A Ticket Number And Approval Decision</p>");
+		}
 
-		
+		out.close();
 		
 	}
 }

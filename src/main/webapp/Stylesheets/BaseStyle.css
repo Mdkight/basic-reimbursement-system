@@ -2,10 +2,11 @@
 
 body{
 	background-color: #4D7AA1;
+	text-align:center;
 }
 
 .centeredBox{
-	background-color: #036178;
+	background-color: #077996;
 	width: 600px;
 	margin: auto;
 	border: 1px solid #037875;
@@ -20,4 +21,14 @@ body{
 	width: 150px;
 	margin-left: 225px;
 }
+
+p{
+	text-align:center;
+	color:rgb(156, 29, 6);	
+	font-size: 2.5em;
+}
+
+/* h1, h2, h3, h4{ */
+/* 	text-align:center; */
+/* } */
 

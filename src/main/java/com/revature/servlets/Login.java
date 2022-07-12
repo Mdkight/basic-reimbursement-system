@@ -25,11 +25,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("loginPage.html").include(request, response);
-		out.print("<p>I'm sorry, There is a problem with your username or password</p>");
-		
-		out.close();
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,9 +48,17 @@ public class Login extends HttpServlet {
 			}
 
 		} else {
-			doGet(request,response);
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			request.getRequestDispatcher("loginPage.html").include(request, response);
+			out.print("<p>I'm sorry, There is a problem with your username or password</p>");
+			
+			out.close();
+			
 		}
 
 	}
+	
+	
 
 }
