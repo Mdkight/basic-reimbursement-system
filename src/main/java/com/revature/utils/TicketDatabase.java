@@ -79,7 +79,7 @@ public class TicketDatabase {
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement fetchTickets = conn
-					.prepareStatement("SELECT * FROM reimbursements where authorid=?, resolved=?");
+					.prepareStatement("SELECT * FROM reimbursements where authorid=? AND resolved=?");
 			fetchTickets.setInt(1, emp.getUserId());
 			fetchTickets.setBoolean(2, resolvedStatus );
 			ResultSet rs = fetchTickets.executeQuery();
@@ -149,12 +149,13 @@ public class TicketDatabase {
 
 	}
 	
-	public int approveTicket(int ticketId) {
+	public int approveTicket(int ticketId, Employee resolver) {
 		
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=true where reimbursementid=?");
-			approveTicket.setInt(1, ticketId);
+			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=true, resolved=true, resolverid=? where reimbursementid=?");
+			approveTicket.setInt(1, resolver.getUserId());
+			approveTicket.setInt(2, ticketId);
 			return approveTicket.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -164,12 +165,13 @@ public class TicketDatabase {
 		return 0;
 	}
 	
-	public int declineTicket(int ticketId) {
+	public int declineTicket(int ticketId, Employee resolver) {
 		
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=false where reimbursementid=?");
-			approveTicket.setInt(1, ticketId);
+			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=false, resolved=true, resolverid=? where reimbursementid=?");
+			approveTicket.setInt(1, resolver.getUserId());
+			approveTicket.setInt(2, ticketId);
 			return approveTicket.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -7,12 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.revature.objects.Employee;
+import com.revature.utils.EmployeeDatabase;
 import com.revature.utils.TicketDatabase;
 
 public class ApproveTicket extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TicketDatabase tickDat = new TicketDatabase(); 
+	EmployeeDatabase empDat = new EmployeeDatabase();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -20,9 +24,11 @@ public class ApproveTicket extends HttpServlet {
 		String ticketNumber = request.getParameter("ticketNumber");
 		String ticketStatus = request.getParameter("appDen");
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		Employee currentUser= empDat.getEmployee((String)session.getAttribute("username"));
 		try {
 		if(ticketStatus.equals("Approve")) {
-			status = tickDat.approveTicket(Integer.parseInt(ticketNumber));
+			status = tickDat.approveTicket(Integer.parseInt(ticketNumber), currentUser);
 			if (status>0) {
 				response.setContentType("text/html");
 				
@@ -36,7 +42,7 @@ public class ApproveTicket extends HttpServlet {
 				out.print("<br><p>Approval failed, please try again later</p>");
 			}
 		}else if(ticketStatus.equals("Deny")) {
-			status = tickDat.declineTicket(Integer.parseInt(ticketNumber));
+			status = tickDat.declineTicket(Integer.parseInt(ticketNumber), currentUser);
 			if (status>0) {
 				response.setContentType("text/html");
 				
