@@ -19,7 +19,7 @@ public class TicketDatabase {
 
 	public boolean ticketSubmit(Ticket newTicket) {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		
+
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement submitTicket = conn.prepareStatement(
@@ -34,7 +34,7 @@ public class TicketDatabase {
 
 			submitTicket.execute();
 			return true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -44,23 +44,27 @@ public class TicketDatabase {
 
 	public ArrayList<Ticket> checkPendingTickets() {
 		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
-		Ticket ticket = new Ticket();
+
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM reimbursements WHERE accepted is null");
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
-				ticket.setReimbursementId(rs.getInt(1));
-				ticket.setAccepted(rs.getString(2));
-				ticket.setAmount(rs.getInt(3));
-				ticket.setDescription(rs.getString(4));
-				ticket.setReimbursementType(rs.getString(5));
-				ticket.setResolvedTime(rs.getTimestamp(6));
-				ticket.setResolved(rs.getBoolean(7));
-				ticket.setSubmitTime(rs.getTimestamp(8));
-				ticket.setAuthorId(rs.getInt(9));
-				ticket.setResolverId(rs.getInt(10));
+				// TODO fix this so it loops through all instead of printing the first one
+				// repeatedly
+				int reimId = rs.getInt(1);
+				String accepted = rs.getString(2);
+				int amount = rs.getInt(3);
+				String description = rs.getString(4);
+				String reimType = rs.getString(5);
+				Timestamp resolveTime = rs.getTimestamp(6);
+				boolean resolved = rs.getBoolean(7);
+				Timestamp submitTime = rs.getTimestamp(8);
+				int authorId = rs.getInt(9);
+				int resolverId = rs.getInt(10);
+				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
+						resolverId, resolveTime, submitTime);
 
 				pendingTickets.add(ticket);
 
@@ -75,25 +79,28 @@ public class TicketDatabase {
 
 	public ArrayList<Ticket> findMyTickets(Employee emp, boolean resolvedStatus) {
 		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
-		Ticket ticket = new Ticket();
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement fetchTickets = conn
 					.prepareStatement("SELECT * FROM reimbursements where authorid=? AND resolved=?");
 			fetchTickets.setInt(1, emp.getUserId());
-			fetchTickets.setBoolean(2, resolvedStatus );
+			fetchTickets.setBoolean(2, resolvedStatus);
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-				ticket.setReimbursementId(rs.getInt(1));
-				ticket.setAccepted(rs.getString(2));
-				ticket.setAmount(rs.getInt(3));
-				ticket.setDescription(rs.getString(4));
-				ticket.setReimbursementType(rs.getString(5));
-				ticket.setResolvedTime(rs.getTimestamp(6));
-				ticket.setResolved(rs.getBoolean(7));
-				ticket.setSubmitTime(rs.getTimestamp(8));
-				ticket.setAuthorId(rs.getInt(9));
-				ticket.setResolverId(rs.getInt(10));
+				// TODO fix this so it loops through all instead of printing the first one
+				// repeatedly
+				int reimId = rs.getInt(1);
+				String accepted = rs.getString(2);
+				int amount = rs.getInt(3);
+				String description = rs.getString(4);
+				String reimType = rs.getString(5);
+				Timestamp resolveTime = rs.getTimestamp(6);
+				boolean resolved = rs.getBoolean(7);
+				Timestamp submitTime = rs.getTimestamp(8);
+				int authorId = rs.getInt(9);
+				int resolverId = rs.getInt(10);
+				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
+						resolverId, resolveTime, submitTime);
 
 				pendingTickets.add(ticket);
 
@@ -105,27 +112,29 @@ public class TicketDatabase {
 		}
 		return pendingTickets;
 	}
-	
+
 	public ArrayList<Ticket> findAllMyTickets(Employee emp) {
 		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
-		Ticket ticket = new Ticket();
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement fetchTickets = conn
-					.prepareStatement("SELECT * FROM reimbursements where authorid=?");
+			PreparedStatement fetchTickets = conn.prepareStatement("SELECT * FROM reimbursements where authorid=?");
 			fetchTickets.setInt(1, emp.getUserId());
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-				ticket.setReimbursementId(rs.getInt(1));
-				ticket.setAccepted(rs.getString(2));
-				ticket.setAmount(rs.getInt(3));
-				ticket.setDescription(rs.getString(4));
-				ticket.setReimbursementType(rs.getString(5));
-				ticket.setResolvedTime(rs.getTimestamp(6));
-				ticket.setResolved(rs.getBoolean(7));
-				ticket.setSubmitTime(rs.getTimestamp(8));
-				ticket.setAuthorId(rs.getInt(9));
-				ticket.setResolverId(rs.getInt(10));
+				// TODO fix this so it prints all instead of printing the last one repeatedly
+			
+				int reimId = rs.getInt(1);
+				String accepted = rs.getString(2);
+				int amount = rs.getInt(3);
+				String description = rs.getString(4);
+				String reimType = rs.getString(5);
+				Timestamp resolveTime = rs.getTimestamp(6);
+				boolean resolved = rs.getBoolean(7);
+				Timestamp submitTime = rs.getTimestamp(8);
+				int authorId = rs.getInt(9);
+				int resolverId = rs.getInt(10);
+				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
+						resolverId, resolveTime, submitTime);
 
 				pendingTickets.add(ticket);
 
@@ -148,34 +157,36 @@ public class TicketDatabase {
 		}
 
 	}
-	
+
 	public int approveTicket(int ticketId, Employee resolver) {
-		
+
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=true, resolved=true, resolverid=? where reimbursementid=?");
+			PreparedStatement approveTicket = conn.prepareStatement(
+					"update reimbursements set accepted=true, resolved=true, resolverid=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
 			approveTicket.setInt(2, ticketId);
 			return approveTicket.executeUpdate();
-			
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return 0;
 	}
-	
+
 	public int declineTicket(int ticketId, Employee resolver) {
-		
+
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement approveTicket = conn.prepareStatement("update reimbursements set accepted=false, resolved=true, resolverid=? where reimbursementid=?");
+			PreparedStatement approveTicket = conn.prepareStatement(
+					"update reimbursements set accepted=false, resolved=true, resolverid=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
 			approveTicket.setInt(2, ticketId);
 			return approveTicket.executeUpdate();
-			
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return 0;
