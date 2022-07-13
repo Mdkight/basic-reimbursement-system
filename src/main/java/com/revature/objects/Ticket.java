@@ -1,6 +1,7 @@
 package com.revature.objects;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 
 public class Ticket {
 	private int reimbursementId;
@@ -11,15 +12,15 @@ public class Ticket {
 	private boolean resolved;
 	private int authorId;
 	private int resolverId;
-	private Timestamp resolvedTime;
-	private Timestamp submitTime;
+	private LocalDateTime resolvedTime;
+	private LocalDateTime submitTime;
 	
 	public Ticket() {
 		super();
 	}
 	public Ticket(int reimbursementId, String accepted, int amount, String description,
-			String reimbursementType, boolean resolved, int authorId, int resolverId, Timestamp resolvedTime,
-			Timestamp submitTime) {
+			String reimbursementType, boolean resolved, int authorId, int resolverId, LocalDateTime resolvedTime,
+			LocalDateTime submitTime) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.accepted = accepted;
@@ -98,16 +99,16 @@ public class Ticket {
 	public void setResolverId(int resolverId) {
 		this.resolverId = resolverId;
 	}
-	public Timestamp getResolvedTime() {
+	public LocalDateTime getResolvedTime() {
 		return resolvedTime;
 	}
-	public void setResolvedTime(Timestamp resolvedTime) {
+	public void setResolvedTime(LocalDateTime resolvedTime) {
 		this.resolvedTime = resolvedTime;
 	}
-	public Timestamp getSubmitTime() {
+	public LocalDateTime getSubmitTime() {
 		return submitTime;
 	}
-	public void setSubmitTime(Timestamp submitTime) {
+	public void setSubmitTime(LocalDateTime submitTime) {
 		this.submitTime = submitTime;
 	}
 	@Override

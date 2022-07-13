@@ -1,6 +1,7 @@
 package com.revature.utils;
 
 import java.sql.Connection;
+import java.util.Date;
 
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
@@ -10,7 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+
 
 public class TicketDatabase {
 	Statement stmt;
@@ -57,9 +61,9 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTime = rs.getTimestamp(6);
+				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTime = rs.getTimestamp(8);
+				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
@@ -92,9 +96,9 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTime = rs.getTimestamp(6);
+				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTime = rs.getTimestamp(8);
+				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
@@ -124,9 +128,9 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTime = rs.getTimestamp(6);
+				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTime = rs.getTimestamp(8);
+				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
