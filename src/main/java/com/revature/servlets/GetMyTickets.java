@@ -32,7 +32,7 @@ public class GetMyTickets extends HttpServlet {
 		
 		String whichSubmissions = request.getParameter("whichSubmissions");
 		request.getRequestDispatcher("employeemainPage.html").include(request, response);
-		out.print("<table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Accepted?</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
+		out.print("<br><table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Accepted?</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
 		
 		try {
 		if(whichSubmissions.equalsIgnoreCase("pending")) {

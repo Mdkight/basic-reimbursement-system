@@ -159,13 +159,14 @@ public class TicketDatabase {
 	}
 
 	public int approveTicket(int ticketId, Employee resolver) {
-
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement approveTicket = conn.prepareStatement(
-					"update reimbursements set accepted=true, resolved=true, resolverid=? where reimbursementid=?");
+					"update reimbursements set accepted=true, resolved=true, resolverid=?, resolvetime=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
 			approveTicket.setInt(2, ticketId);
+			approveTicket.setTimestamp(3, now);
 			return approveTicket.executeUpdate();
 
 		} catch (SQLException e) {
@@ -176,13 +177,14 @@ public class TicketDatabase {
 	}
 
 	public int declineTicket(int ticketId, Employee resolver) {
-
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement approveTicket = conn.prepareStatement(
-					"update reimbursements set accepted=false, resolved=true, resolverid=? where reimbursementid=?");
+					"update reimbursements set accepted=false, resolved=true, resolverid=?, resolvetime=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
 			approveTicket.setInt(2, ticketId);
+			approveTicket.setTimestamp(3, now);
 			return approveTicket.executeUpdate();
 
 		} catch (SQLException e) {
