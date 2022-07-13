@@ -47,7 +47,7 @@ public class TicketDatabase {
 
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM reimbursements WHERE accepted is null");
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM reimbursements WHERE accepted is null order by reimbursementid desc");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -81,7 +81,7 @@ public class TicketDatabase {
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement fetchTickets = conn
-					.prepareStatement("SELECT * FROM reimbursements where authorid=? AND resolved=?");
+					.prepareStatement("SELECT * FROM reimbursements where authorid=? AND resolved=? order by reimbursementid desc");
 			fetchTickets.setInt(1, emp.getUserId());
 			fetchTickets.setBoolean(2, resolvedStatus);
 			ResultSet rs = fetchTickets.executeQuery();
@@ -115,7 +115,7 @@ public class TicketDatabase {
 		ArrayList<Ticket> pendingTickets = new ArrayList<Ticket>();
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement fetchTickets = conn.prepareStatement("SELECT * FROM reimbursements where authorid=?");
+			PreparedStatement fetchTickets = conn.prepareStatement("SELECT * FROM reimbursements where authorid=? order by reimbursementid desc");
 			fetchTickets.setInt(1, emp.getUserId());
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
@@ -161,8 +161,8 @@ public class TicketDatabase {
 			PreparedStatement approveTicket = conn.prepareStatement(
 					"update reimbursements set accepted=true, resolved=true, resolverid=?, resolvetime=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
-			approveTicket.setInt(2, ticketId);
-			approveTicket.setTimestamp(3, now);
+			approveTicket.setTimestamp(2, now);			
+			approveTicket.setInt(3, ticketId);
 			return approveTicket.executeUpdate();
 
 		} catch (SQLException e) {
@@ -179,8 +179,8 @@ public class TicketDatabase {
 			PreparedStatement approveTicket = conn.prepareStatement(
 					"update reimbursements set accepted=false, resolved=true, resolverid=?, resolvetime=? where reimbursementid=?");
 			approveTicket.setInt(1, resolver.getUserId());
-			approveTicket.setInt(2, ticketId);
-			approveTicket.setTimestamp(3, now);
+			approveTicket.setTimestamp(2, now);
+			approveTicket.setInt(3, ticketId);
 			return approveTicket.executeUpdate();
 
 		} catch (SQLException e) {
