@@ -9,9 +9,12 @@
 </head>
 <body>
     <div style="text-align:center;">
-    <h2>Employee Dashboard</h2><br><br>
+    
     </div>
 	<div class="centeredBox">
+	<br>
+	<h1>Employee Dashboard</h1><br>
+	<hr>
 		<h3>New Ticket Submission</h3>
 		<form action="SubmitTicket" method="POST">
 			
@@ -25,13 +28,18 @@
 					name="amount"> <br> <label for="description">Description</label>
 				<textarea maxlength="150" rows="4" cols="50" name="description"
 					placeholder="Enter a brief description here (150 char limit)"></textarea>
-				<br> <input type="submit" value="Submit New Ticket">
-			
-		</form>
-	</div>
+				<br> <input type="submit" value="Submit New Ticket" style="float: left; margin-left: 35%">
+				</form>
+			<div style="display: inline-block; width: 25%; text-align: center; float: right;">
+			<form action="Logout" method="GET">
+				<input type="submit" id="Logout" value="Logout">
+			</form>
+			</div>
+
 	<br>
+	<hr>
 	<br>
-	<div class="centeredBox">
+<!-- 	<div class="centeredBox"> -->
 		<h3>See Previously Submitted Tickets</h3>
 
 		<form action="GetMyTickets" method="GET">
@@ -40,6 +48,7 @@
 			<input type="radio" name="whichSubmissions" value="Resolved">Resolved
 			<input type="submit" value="See Previous Submissions" />
 		</form>
+		<br>
 	</div>
 </body>
 </html>

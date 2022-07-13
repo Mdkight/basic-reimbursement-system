@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Stylesheets/BaseStyle.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="Stylesheets/BaseStyle.css">
 </head>
 <body>
-    <div style="text-align:center;">
-    <h2>Manager Dashboard</h2><br><br>
-    </div>
-    <div class="centeredBox">
-<h4>Approve Ticket by Number</h4>
-    <form action="ApproveTicket" method="POST">
-        <input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber">Ticket Number
-        <br>
-        <input type="radio" name="appDen" value="Approve">Approve
-        <input type="radio" name="appDen" value="Deny">Deny
-        <input type="submit" value="Submit decision">
-    </form>
-    <br><br>
-    <form action="SeePending" method="GET">
-    <input type="submit" id="pending" value="See Pending Tickets">
-    </form>
-    </div>
 
-    <!-- can add another form to get total spent -->
+	<div class="centeredBox">
+		<br>
+		<h1>Manager Dashboard</h1>
+		<br>
+		<hr>
+		<h4>Approve Ticket by Number</h4>
+		<form action="ApproveTicket" method="POST">
+			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber">Ticket Number <br> <input type="radio" name="appDen"
+				value="Approve">Approve <input type="radio" name="appDen" value="Deny">Deny <input type="submit" value="Submit decision">
+		</form>
+		<br> <br>
+		<div style="display: inline-block; width: 45%; text-align: center;">
+		<div style="display: inline-block; width: 45%; text-align: center;">
+			<form action="SeePending" method="GET">
+				<input type="submit" id="pending" value="See Pending Tickets">
+			</form>
+			</div>
+			<div style="display: inline-block; width: 45%; text-align: center;">
+			<form action="Logout" method="GET">
+				<input type="submit" id="Logout" value="Logout">
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- can add another form to get total spent -->
 
 
 </body>

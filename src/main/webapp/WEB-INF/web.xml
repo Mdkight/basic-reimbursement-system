@@ -6,7 +6,6 @@
   <display-name>Project01</display-name>
   <welcome-file-list>
     <welcome-file>loginPage.html</welcome-file>
-
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -54,7 +53,7 @@
     <servlet-name>GetMyTickets</servlet-name>
     <servlet-class>com.revature.servlets.GetMyTickets</servlet-class>
   </servlet>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>GetMyTickets</servlet-name>
     <url-pattern>/GetMyTickets</url-pattern>
   </servlet-mapping>
@@ -64,9 +63,18 @@
     <servlet-name>ApproveTicket</servlet-name>
     <servlet-class>com.revature.servlets.ApproveTicket</servlet-class>
   </servlet>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>ApproveTicket</servlet-name>
     <url-pattern>/ApproveTicket</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.revature.servlets.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
 </web-app>

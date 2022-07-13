@@ -119,8 +119,6 @@ public class TicketDatabase {
 			fetchTickets.setInt(1, emp.getUserId());
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-			
-			
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);

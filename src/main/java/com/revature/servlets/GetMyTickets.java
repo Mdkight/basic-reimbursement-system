@@ -32,7 +32,7 @@ public class GetMyTickets extends HttpServlet {
 		
 		String whichSubmissions = request.getParameter("whichSubmissions");
 		request.getRequestDispatcher("employeemainPage.html").include(request, response);
-		out.print("<br><table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Accepted?</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
+		out.print("<br><br><table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Accepted?</th><th>Description</th><th>Category</th><th>Amount</th><th>Submitted on</th><th>Resolved on</th><th>Resolver Id</th></tr>");
 		
 		try {
 		if(whichSubmissions.equalsIgnoreCase("pending")) {
@@ -68,7 +68,7 @@ public class GetMyTickets extends HttpServlet {
 			} else if(ticketList.get(i).isAccepted().equals("false")){
 				approvalStatus="denied";
 			}
-			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td></tr>");
+			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + ticketList.get(i).getSubmitTime() + "</td><td>" + ticketList.get(i).getResolvedTime() + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
 			
 		}
 		
@@ -92,8 +92,7 @@ public class GetMyTickets extends HttpServlet {
 			} else if(ticketList.get(i).isAccepted().equals("false")){
 				approvalStatus="denied";
 			}
-			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td></tr>");
-			
+			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + ticketList.get(i).getSubmitTime() + "</td><td>" + ticketList.get(i).getResolvedTime() + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
 		}
 	}
 
