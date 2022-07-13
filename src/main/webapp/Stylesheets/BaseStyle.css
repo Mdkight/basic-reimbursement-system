@@ -9,7 +9,9 @@ body{
 	background-color: #077996;
 	width: 600px;
 	margin: auto;
-	border: 1px solid #037875;
+	box-shadow: 10px 10px 25px;	
+
+
 }
 
 #loginForm{

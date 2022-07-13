@@ -51,8 +51,7 @@ public class TicketDatabase {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				// TODO fix this so it loops through all instead of printing the first one
-				// repeatedly
+
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);
@@ -87,8 +86,7 @@ public class TicketDatabase {
 			fetchTickets.setBoolean(2, resolvedStatus);
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-				// TODO fix this so it loops through all instead of printing the first one
-				// repeatedly
+
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);
@@ -121,7 +119,7 @@ public class TicketDatabase {
 			fetchTickets.setInt(1, emp.getUserId());
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-				// TODO fix this so it prints all instead of printing the last one repeatedly
+			
 			
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
