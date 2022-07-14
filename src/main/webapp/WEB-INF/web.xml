@@ -77,4 +77,14 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MoneyView</display-name>
+    <servlet-name>MoneyView</servlet-name>
+    <servlet-class>com.revature.servlets.MoneyView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MoneyView</servlet-name>
+    <url-pattern>/MoneyView</url-pattern>
+  </servlet-mapping>
 </web-app>
