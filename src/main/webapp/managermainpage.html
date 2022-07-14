@@ -16,10 +16,10 @@
 		<hr>
 		<h4>Approve Ticket by Number</h4>
 		<form action="ApproveTicket" method="POST">
-			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber">Ticket Number <br> <input type="radio" name="appDen"
+			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber">Ticket Number <br> <br> <input type="radio" name="appDen"
 				value="Approve">Approve <input type="radio" name="appDen" value="Deny">Deny <input type="submit" value="Submit decision">
 		</form>
-		<br> <br>
+		<br> <br> <br>
 		<div style="display: inline-block; width: 45%; text-align: center;">
 		<div style="display: inline-block; width: 45%; text-align: center;">
 			<form action="SeePending" method="GET">
@@ -32,6 +32,11 @@
 			</form>
 			</div>
 		</div>
+		<br>
+		<br>
+		<form action="ReimbursementView" method="POST">
+		<input type="submit" value="See Total Reimbursements by employee">
+		</form>
 	</div>
 
 	<!-- can add another form to get total spent -->

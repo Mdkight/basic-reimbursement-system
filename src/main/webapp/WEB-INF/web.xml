@@ -85,6 +85,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MoneyView</servlet-name>
-    <url-pattern>/MoneyView</url-pattern>
+    <url-pattern>/ReimbursementView</url-pattern>
   </servlet-mapping>
 </web-app>

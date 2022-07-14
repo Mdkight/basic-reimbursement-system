@@ -2,6 +2,8 @@ package com.revature.utils;
 
 import java.sql.Connection;
 import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
 
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
@@ -233,6 +235,48 @@ public class TicketDatabase {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public TreeMap<Integer,Integer> reimbursementsByEmployee() {
+		TreeMap<Integer,Integer> empReimb = new TreeMap<Integer,Integer>();
+
+		
+		try {
+			Connection conn = ConnectionUtils.getInstance().getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT sum(amount), authorid FROM reimbursements WHERE accepted='true' group by authorid");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				empReimb.put(rs.getInt(2), rs.getInt(1));
+
+			}
+			return empReimb;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public TreeMap<Integer,Integer> reimbursementsByDate() {
+		TreeMap<Integer,Integer> empReimb = new TreeMap<Integer,Integer>();
+		//TODO have not even touched this one yet
+		
+		try {
+			Connection conn = ConnectionUtils.getInstance().getConnection();
+			PreparedStatement stmt = conn.prepareStatement("SELECT sum(amount), authorid FROM reimbursements WHERE accepted='true' group by authorid");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				empReimb.put(rs.getInt(2), rs.getInt(1));
+
+			}
+			return empReimb;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
