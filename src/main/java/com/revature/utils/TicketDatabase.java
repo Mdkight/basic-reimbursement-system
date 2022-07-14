@@ -55,17 +55,31 @@ public class TicketDatabase {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-
+				LocalDateTime resolveTime;
+				LocalDateTime submitTime;
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp resolveTimestamp = rs.getTimestamp(6);
 				boolean resolved = rs.getBoolean(7);
-				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp submitTimestamp = rs.getTimestamp(8);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
+				
+				if(resolveTimestamp != null) {
+					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					resolveTime = null;
+				}
+				
+				if(submitTimestamp != null) {
+					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					submitTime = null;
+				}				
+				
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
 						resolverId, resolveTime, submitTime);
 
@@ -90,17 +104,30 @@ public class TicketDatabase {
 			fetchTickets.setBoolean(2, resolvedStatus);
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
-
+				LocalDateTime resolveTime;
+				LocalDateTime submitTime;
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp resolveTimestamp = rs.getTimestamp(6);
 				boolean resolved = rs.getBoolean(7);
-				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp submitTimestamp = rs.getTimestamp(8);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
+				
+				if(resolveTimestamp != null) {
+					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					resolveTime = null;
+				}
+				
+				if(submitTimestamp != null) {
+					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					submitTime = null;
+				}	
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
 						resolverId, resolveTime, submitTime);
 
@@ -123,16 +150,30 @@ public class TicketDatabase {
 			fetchTickets.setInt(1, emp.getUserId());
 			ResultSet rs = fetchTickets.executeQuery();
 			while (rs.next()) {
+				LocalDateTime resolveTime;
+				LocalDateTime submitTime;
 				int reimId = rs.getInt(1);
 				String accepted = rs.getString(2);
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				LocalDateTime resolveTime = rs.getTimestamp(6).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp resolveTimestamp = rs.getTimestamp(6);
 				boolean resolved = rs.getBoolean(7);
-				LocalDateTime submitTime = rs.getTimestamp(8).toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				Timestamp submitTimestamp = rs.getTimestamp(8);
 				int authorId = rs.getInt(9);
 				int resolverId = rs.getInt(10);
+				
+				if(resolveTimestamp != null) {
+					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					resolveTime = null;
+				}
+				
+				if(submitTimestamp != null) {
+					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				}else {
+					submitTime = null;
+				}	
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
 						resolverId, resolveTime, submitTime);
 

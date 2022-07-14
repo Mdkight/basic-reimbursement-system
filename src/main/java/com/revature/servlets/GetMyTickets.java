@@ -59,6 +59,8 @@ public class GetMyTickets extends HttpServlet {
 		String approvalStatus="foo";
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();	
+		String submitTime;
+		String resolveTime;
 		
 				for(int i=0;i<ticketList.size();i++) {
 			if (ticketList.get(i).isAccepted()==null){
@@ -68,7 +70,22 @@ public class GetMyTickets extends HttpServlet {
 			} else if(ticketList.get(i).isAccepted().equals("false")){
 				approvalStatus="denied";
 			}
-			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + ticketList.get(i).getSubmitTime() + "</td><td>" + ticketList.get(i).getResolvedTime() + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
+			if(ticketList.get(i).getSubmitTime() !=null) {
+				submitTime = String.join(" ", ticketList.get(i).getSubmitTime().toString().split("T"));
+				
+			}else {
+				submitTime="N/A";
+			}
+			
+			if(ticketList.get(i).getResolvedTime() !=null) {
+				resolveTime = String.join(" ", ticketList.get(i).getResolvedTime().toString().split("T"));
+				
+			}else {
+				resolveTime="N/A";
+			}
+				
+				
+			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + submitTime + "</td><td>" + resolveTime + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
 			
 		}
 		
@@ -83,6 +100,8 @@ public class GetMyTickets extends HttpServlet {
 		String approvalStatus="foo";
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();	
+		String submitTime;
+		String resolveTime;
 		
 				for(int i=0;i<ticketList.size();i++) {
 			if (ticketList.get(i).isAccepted()==null){
@@ -92,7 +111,22 @@ public class GetMyTickets extends HttpServlet {
 			} else if(ticketList.get(i).isAccepted().equals("false")){
 				approvalStatus="denied";
 			}
-			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + ticketList.get(i).getSubmitTime() + "</td><td>" + ticketList.get(i).getResolvedTime() + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
+			if(ticketList.get(i).getSubmitTime() !=null) {
+				submitTime = String.join(" ", ticketList.get(i).getSubmitTime().toString().split("T"));
+				
+			}else {
+				submitTime="N/A";
+			}
+			
+			if(ticketList.get(i).getResolvedTime() !=null) {
+				resolveTime = String.join(" ", ticketList.get(i).getResolvedTime().toString().split("T"));
+				
+			}else {
+				resolveTime="N/A";
+			}			
+			
+			
+			out.print("<br><tr><td>" + ticketList.get(i).getReimbursementId() + "</td><td>" + approvalStatus + "</td><td>" + ticketList.get(i).getDescription() + "</td><td>" + ticketList.get(i).getReimbursementType() + "</td><td>" + ticketList.get(i).getAmount() + "</td><td>" + submitTime + "</td><td>" + resolveTime + "</td><td>" + ticketList.get(i).getResolverId() + "</td><td>");
 		}
 	}
 

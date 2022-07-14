@@ -38,7 +38,7 @@ public class SubmitTicket extends HttpServlet {
 			Ticket newTicket = new Ticket(amount, description, reimbursementType, false, currentUser.getUserId());
 			boolean success = tickDat.ticketSubmit(newTicket);
 
-			// TODO make sure null values are rejected
+
 			if (success) {
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
