@@ -33,22 +33,24 @@ public class SubmitTicket extends HttpServlet {
 		String description = request.getParameter("description");
 		String reimbursementType = request.getParameter("reimbursementtype");
 		HttpSession session = request.getSession();
-		Employee currentUser = empPost.getEmployee((String)session.getAttribute("username"));
-		Ticket newTicket = new Ticket(amount, description, reimbursementType, false, currentUser.getUserId());
-		boolean success = tickDat.ticketSubmit(newTicket);
-		if (success) {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			request.getRequestDispatcher("employeemainPage.html").include(request, response);
-			out.print("<br><p>New Ticket submitted!</p>");
-			
-		}else {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			request.getRequestDispatcher("employeemainPage.html").include(request, response);
-			out.print("<br><p>Submission failed, please try again later</p>");
-		}
+		Employee currentUser = empPost.getEmployee((String) session.getAttribute("username"));
+		
+			Ticket newTicket = new Ticket(amount, description, reimbursementType, false, currentUser.getUserId());
+			boolean success = tickDat.ticketSubmit(newTicket);
 
+			// TODO make sure null values are rejected
+			if (success) {
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				request.getRequestDispatcher("employeemainPage.html").include(request, response);
+				out.print("<br><p>New Ticket submitted!</p>");
+
+			} else {
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				request.getRequestDispatcher("employeemainPage.html").include(request, response);
+				out.print("<br><p>Submission failed, please try again later</p>");
+			}
+		}
 	}
 
-}
