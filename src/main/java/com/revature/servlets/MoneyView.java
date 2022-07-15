@@ -32,26 +32,32 @@ public class MoneyView extends HttpServlet {
 		// TODO get the money totals by employee ID
 		TreeMap<Integer, Integer> expenseByEmployee = tickDat.reimbursementsByEmployee();
 		TreeMap<Integer, Double> percentByEmployee = findPercentages(expenseByEmployee);
-
+		out.print("<br><br>	<div class=\"centeredBox\">");
 		for (Integer key : expenseByEmployee.keySet()) {
 			percentage = percentByEmployee.get(key);
-			
-			out.print("<div class=\"pie\" style=\"--percentage:" + df.format(percentage)
-					+ ";\">" + df.format(percentage) + "</div>");
+
+			out.print("<div class=\"pie\" style=\"--percentage:" + df.format(percentage) + ";\">"
+					+ df.format(percentage) + "%</div>");
+			out.print("");
 		}
+		out.print("</div>");
+
 	}
 
 	protected TreeMap<Integer, Double> findPercentages(TreeMap<Integer, Integer> expenseByCat) {
 		TreeMap<Integer, Double> percentageByCat = new TreeMap<Integer, Double>();
-		int totalExpense = 0;
+		double totalExpense = 0;
 		double percent;
 
 		for (Integer key : expenseByCat.keySet()) {
 			totalExpense = totalExpense + expenseByCat.get(key);
+			System.out.println(totalExpense);
 
 		}
 		for (Integer key : expenseByCat.keySet()) {
-			percent = totalExpense / expenseByCat.get(key);
+			percent = (expenseByCat.get(key) / totalExpense) * 100;
+			System.out.println(expenseByCat.get(key));
+			System.out.println(percent);
 			percentageByCat.put(key, percent);
 
 		}
