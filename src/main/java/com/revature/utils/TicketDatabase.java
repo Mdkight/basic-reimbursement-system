@@ -23,7 +23,7 @@ public class TicketDatabase {
 
 	public boolean ticketSubmit(Ticket newTicket) {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-
+		System.out.println();
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement submitTicket = conn.prepareStatement(

@@ -3,12 +3,11 @@
   <listener>
     <listener-class>com.revature.servlets.DependencyLoaderListener</listener-class>
   </listener>
-  <display-name>Project01</display-name>
+
   <welcome-file-list>
     <welcome-file>loginPage.html</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description></description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.revature.servlets.Login</servlet-class>
