@@ -30,7 +30,7 @@ public class SeePending extends HttpServlet {
 		PrintWriter out = response.getWriter();	
 		request.getRequestDispatcher("managermainpage.html").include(request, response);
 		out.print("<br><br>");
-		out.print("<table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>When Submitted</th><th>Employee Id</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
+		out.print("<table border='1' class=\"centeredBox\"><tr><th>Ticket Id</th><th>Date Submitted</th><th>Employee Id</th><th>Description</th><th>Category</th><th>Amount</th></tr>");
 		for(int i=0;i<ticketList.size();i++) {
 			
 			if(ticketList.get(i).getSubmitTime() !=null) {

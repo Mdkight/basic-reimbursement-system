@@ -1,9 +1,12 @@
 package com.revature.utils;
 
 import java.sql.Connection;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Optional;
+
 
 import com.revature.objects.Employee;
 import com.revature.objects.Ticket;
@@ -25,7 +28,7 @@ public class TicketDatabase {
 
 	public boolean ticketSubmit(Ticket newTicket) {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-
+		System.out.println();
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
 			PreparedStatement submitTicket = conn.prepareStatement(
@@ -64,20 +67,20 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTimestamp = rs.getTimestamp(6);
+				Optional<Timestamp> resolveTimestamp = Optional.ofNullable(rs.getTimestamp(6));
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTimestamp = rs.getTimestamp(8);
+				Optional<Timestamp> submitTimestamp = Optional.ofNullable(rs.getTimestamp(8));
 				int authorId = rs.getInt(9);
-				int resolverId = rs.getInt(10);
+				int resolverId = rs.getInt(10);				
 				
-				if(resolveTimestamp != null) {
-					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(resolveTimestamp.isPresent()) {
+					resolveTime = resolveTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					resolveTime = null;
 				}
 				
-				if(submitTimestamp != null) {
-					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(submitTimestamp.isPresent()) {
+					submitTime = submitTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					submitTime = null;
 				}				
@@ -113,23 +116,23 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTimestamp = rs.getTimestamp(6);
+				Optional<Timestamp> resolveTimestamp = Optional.ofNullable(rs.getTimestamp(6));
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTimestamp = rs.getTimestamp(8);
+				Optional<Timestamp> submitTimestamp = Optional.ofNullable(rs.getTimestamp(8));
 				int authorId = rs.getInt(9);
-				int resolverId = rs.getInt(10);
+				int resolverId = rs.getInt(10);				
 				
-				if(resolveTimestamp != null) {
-					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(resolveTimestamp.isPresent()) {
+					resolveTime = resolveTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					resolveTime = null;
 				}
 				
-				if(submitTimestamp != null) {
-					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(submitTimestamp.isPresent()) {
+					submitTime = submitTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					submitTime = null;
-				}	
+				}		
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
 						resolverId, resolveTime, submitTime);
 
@@ -159,20 +162,20 @@ public class TicketDatabase {
 				int amount = rs.getInt(3);
 				String description = rs.getString(4);
 				String reimType = rs.getString(5);
-				Timestamp resolveTimestamp = rs.getTimestamp(6);
+				Optional<Timestamp> resolveTimestamp = Optional.ofNullable(rs.getTimestamp(6));
 				boolean resolved = rs.getBoolean(7);
-				Timestamp submitTimestamp = rs.getTimestamp(8);
+				Optional<Timestamp> submitTimestamp = Optional.ofNullable(rs.getTimestamp(8));
 				int authorId = rs.getInt(9);
-				int resolverId = rs.getInt(10);
+				int resolverId = rs.getInt(10);				
 				
-				if(resolveTimestamp != null) {
-					resolveTime = resolveTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(resolveTimestamp.isPresent()) {
+					resolveTime = resolveTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					resolveTime = null;
 				}
 				
-				if(submitTimestamp != null) {
-					submitTime = submitTimestamp.toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
+				if(submitTimestamp.isPresent()) {
+					submitTime = submitTimestamp.get().toLocalDateTime().truncatedTo(ChronoUnit.MINUTES);
 				}else {
 					submitTime = null;
 				}	

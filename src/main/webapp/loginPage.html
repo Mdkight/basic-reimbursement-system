@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Login</title>
 <link rel="stylesheet" href="Stylesheets/BaseStyle.css">
 </head>
 <body>
@@ -15,10 +15,14 @@
 		<form action="Login" method="POST" id="loginForm" style="margin: auto;">
 			<fieldset style="width: 300px; ">
 				<legend>Please Login or create account here</legend>
-				<label for="username">Username:</label> <input type="text"
-					name="username" placeholder="enter username" /> <br /> <br /> <label
-					for="password">Password:</label> <input type="password"
-					name="password" placeholder="enter password" /> <br /> <input
+				<label for="username">Username:</label> 
+				<input type="text"
+					name="username" placeholder="enter username" required/> <br /> <br /> 
+					<label
+					for="password">Password:</label> 
+					<input type="password"
+					name="password" placeholder="enter password" required/> <br /> 
+					<input
 					type="submit" value="Submit" />
 			</fieldset>
 		</form>
