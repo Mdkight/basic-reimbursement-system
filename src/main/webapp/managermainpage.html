@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manager Dashboard</title>
 <link rel="stylesheet" href="Stylesheets/BaseStyle.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -16,33 +17,67 @@
 		<hr>
 		<h4>Approve Ticket by Number</h4>
 		<form action="ApproveTicket" method="POST">
-			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber" required>Ticket Number <br> <input type="radio" name="appDen"
-				value="Approve">Approve <input type="radio" name="appDen" value="Deny">Deny <input type="submit" value="Submit decision">
+			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber" required>Ticket Number <br> <input type="radio"
+				name="appDen" value="Approve">Approve <input type="radio" name="appDen" value="Deny">Deny <input type="submit"
+				value="Submit decision">
 		</form>
 		<br> <br> <br>
 		<div style="display: inline-block; width: 45%; text-align: center;">
-		<div style="display: inline-block; width: 45%; text-align: center;">
-			<form action="SeePending" method="GET">
-				<input type="submit" id="pending" value="See Pending Tickets">
-			</form>
+			<div style="display: inline-block; width: 45%; text-align: center;">
+				<form action="SeePending" method="GET">
+					<input type="submit" id="pending" value="See Pending Tickets">
+				</form>
 			</div>
 			<div style="display: inline-block; width: 45%; text-align: center;">
-			<form action="Logout" method="GET">
-				<input type="submit" id="Logout" value="Logout">
-			</form>
+				<form action="Logout" method="GET">
+					<input type="submit" id="Logout" value="Logout">
+				</form>
 			</div>
 		</div>
-		<br>
-		<br>
-		<form action="ReimbursementView" method="POST">
-		<input type="submit" value="See Total Reimbursements by employee">
+		<br> <br>
+		<form action="MoneyView" method="POST">
+			<input type="submit" value="See Total Reimbursements by Category">
 		</form>
 	</div>
-	<!-- can add another form to get total spent -->
-<div class="pie-box" >
-<div class="pie" style="--percentage: 60;"> 60%</div>
-<p style="color: black;">user Id:</p>
-</div>
+<!-- 	<div class="centeredBox"  style="height:500px;width:500px"> -->
+<!-- 					<canvas id="myChart" style="color: black"></canvas> -->
+<!-- 				</div> -->
+<!-- 				<script> -->
+				
+<!-- 				const config = { -->
+<!-- 				  type: 'doughnut', -->
+<!-- 				   data: { -->
+<!-- 				 labels:['food', 'lodging', 'travel', 'other'], -->
+<!-- 				 color: 'rgb(0, 0, 0)', -->
+<!-- 				  datasets: [{ -->
+<!-- 				     label: 'Expense by Category', -->
+<!-- 				  	 borderColor: 'rgb(0, 0, 0)', -->
+<!-- 				    data: [225, 250, 4650, 15], -->
+<!-- 				    backgroundColor:['red', 'green', 'blue', 'yellow'], -->
+				    
+<!-- 				   }], -->
+<!-- 				  }, -->
+<!-- 				  options:{ -->
+<!-- 					  plugins:{ -->
+<!-- 					  legend:{ -->
+<!-- 			                display: true, -->
+<!-- 			                labels: { -->
+<!-- 			                    color: 'black' -->
+<!-- 			                } -->
+<!-- 					  } -->
+<!-- 					  } -->
+<!-- 				  } -->
+<!-- 				  }; -->
+				
+<!-- 				  const myChart = new Chart( -->
+					
+<!-- 				   document.getElementById('myChart'), -->
+<!-- 				   config -->
+<!-- 				  ); -->
+<!-- 				</script> -->
+				
+
+
 
 </body>
 

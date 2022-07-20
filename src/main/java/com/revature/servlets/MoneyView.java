@@ -3,6 +3,7 @@ package com.revature.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.objects.Category;
+import com.revature.utils.CategoryDatabase;
 import com.revature.utils.TicketDatabase;
 
 /**
@@ -18,51 +21,93 @@ import com.revature.utils.TicketDatabase;
 public class MoneyView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TicketDatabase tickDat = new TicketDatabase();
+	CategoryDatabase catDat = new CategoryDatabase();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		Double percentage;
-		DecimalFormat df = new DecimalFormat("####0.0");
-		request.getRequestDispatcher("managermainpage.html").include(request, response);
+		request.getRequestDispatcher("managermainpage.html").forward(request, response);
 		out.print("<br><br>");
+		
 
-		// TODO get the money totals by employee ID
-		TreeMap<Integer, Integer> expenseByEmployee = tickDat.reimbursementsByEmployee();
-		TreeMap<Integer, Double> percentByEmployee = findPercentages(expenseByEmployee);
-		out.print("<br><br>	<div class=\"centeredBox\">");
-		for (Integer key : expenseByEmployee.keySet()) {
-			percentage = percentByEmployee.get(key);
-
-			out.print("<div class=\"pie\" style=\"--percentage:" + df.format(percentage) + ";\">"
-					+ df.format(percentage) + "%</div>");
-			out.print("");
-		}
-		out.print("</div>");
+		ArrayList<Category> allCategories = catDat.getAllCategories();
+		out.print("	<div class=\"centeredBox\"  style=\"height:500px;width:500px\">\r\n"
+				+ "	<canvas id=\"myChart\"></canvas>\r\n"
+				+ "	</div>"
+				+ "<script>\r\n"
+				+ "  const config = {\r\n"
+				+ "    type: 'doughnut',\r\n"
+				+ "    data: {\\r\\n"
+				+ "    labels:[ " +findLabelSet(allCategories) +"]\"\r\n"
+				+ "    datasets: [{\\r\\n"
+				+ "      label: 'Expense by Category',\\r\\n"
+				+ "      borderColor: 'rgb(0, 0, 0)',\\r\\n"
+				+ "      data: [" + findAmountSet(allCategories) +"],\\r\\n"
+				+"      backgroundColor:[ "+ findColorSet(allCategories) + "]\\r\\n"
+				+"    }]\\r\\n"
+				+ "  };"
+				
+				+ "  				  options:{\r\n"
+				+ "					  plugins:{\r\n"
+				+ "					  legend:{\r\n"
+				+ "			                display: true,\r\n"
+				+ "			                labels: {\r\n"
+				+ "			                    color: 'black'\r\n"
+				+ "			                }\r\n"
+				+ "					  }\r\n"
+				+ "					  }\r\n"
+				+ "				  }"
+				+ "  };\r\n"
+				+ "  const myChart = new Chart(\r\n"
+				+ "    document.getElementById('myChart'),\r\n"
+				+ "    config\r\n"
+				+ "  );\r\n"
+				+ "</script>"
+				
+				);
+						
+		
+		
 
 	}
 
-	protected TreeMap<Integer, Double> findPercentages(TreeMap<Integer, Integer> expenseByCat) {
-		TreeMap<Integer, Double> percentageByCat = new TreeMap<Integer, Double>();
-		double totalExpense = 0;
-		double percent;
 
-		for (Integer key : expenseByCat.keySet()) {
-			totalExpense = totalExpense + expenseByCat.get(key);
-			System.out.println(totalExpense);
-
-		}
-		for (Integer key : expenseByCat.keySet()) {
-			percent = (expenseByCat.get(key) / totalExpense) * 100;
-			System.out.println(expenseByCat.get(key));
-			System.out.println(percent);
-			percentageByCat.put(key, percent);
-
+	protected String findLabelSet(ArrayList<Category> allCategories) {
+		String labelSet="";
+		for (Category cat : allCategories) {
+			String label = cat.getCategory();
+			labelSet += "\'" + label + "\',";
 		}
 
-		return percentageByCat;
+		return labelSet;
+
+	}
+	
+	protected String findColorSet(ArrayList<Category> allCategories) {
+		String colorSet = "";
+		for (Category cat : allCategories) {
+			String color = cat.getColor();
+			colorSet += "\'" + color + "\',";
+		}
+
+		return colorSet;
+		
+		
+	}
+	
+	protected String findAmountSet(ArrayList<Category> allCategories) {
+		String amountSet = "";
+		for (Category cat : allCategories) {
+			int amount = cat.getAmount();
+			DecimalFormat df = new DecimalFormat("####0.0");
+			
+			amountSet +=amount+", ";
+		}
+		amountSet = amountSet.substring(0, amountSet.length()-2);
+		return amountSet;
+		
 	}
 
 }

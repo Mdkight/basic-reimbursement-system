@@ -40,19 +40,6 @@ public class EmployeeDatabase{
 	}
 
 
-	public ResultSet getAllEmployees() {
-		ResultSet rs= null;
-		try {
-			Connection conn=ConnectionUtils.getInstance().getConnection();
-			PreparedStatement getEmployee = conn.prepareStatement("SELECT user_id, firstname, lastname, email FROM users");
-			rs = getEmployee.executeQuery();
-		} catch (SQLException e) {
-			// 
-			e.printStackTrace();
-		}
-		return rs;
-	}
-
 
 	public void createEmployee(Employee e) {
 		try {
@@ -70,8 +57,24 @@ public class EmployeeDatabase{
 	}
 
 
-	public void updateEmployee(int id) {
-		// TODO Extra features
+	public boolean updateEmployee(Employee emp) {
+		
+		try {
+			conn=ConnectionUtils.getInstance().getConnection();
+			PreparedStatement updateProfile=conn.prepareStatement("update users set email=?, firstname=?, lastname=?, address=? where user_id=?");
+			updateProfile.setString(1, emp.getEmail());
+			updateProfile.setString(2, emp.getFirstName());
+			updateProfile.setString(3, emp.getLastName());
+			updateProfile.setString(4, emp.getAddress());
+			updateProfile.setInt(5, emp.getUserId());
+			updateProfile.execute();
+			return true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 

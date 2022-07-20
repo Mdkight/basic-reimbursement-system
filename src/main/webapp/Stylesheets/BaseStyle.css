@@ -35,36 +35,9 @@ th, td{
 	font-size: 1.25em;
 }
 
-.pie::before {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  inset: 0;
-  background: conic-gradient(purple, calc(var(--percentage)*1%) ,#0000 0);
-  z-index: -1;
-  
-}
-
-.pie {
-  width: 150px;
-  aspect-ratio: 1;
-  position: relative;
-/*   display: inline-grid; */
-  place-content: center;
-  margin: 5px;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: sans-serif;
-	z-index:1;
-}
-.pie-box{
-	display: inline-grid;
-	
-	
-}
 
 
-/*   background: conic-gradient(purple, calc(var(--percentage)*1%),#0000 0); */
+
 
 
 

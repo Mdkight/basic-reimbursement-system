@@ -3,7 +3,6 @@
   <listener>
     <listener-class>com.revature.servlets.DependencyLoaderListener</listener-class>
   </listener>
-
   <welcome-file-list>
     <welcome-file>loginPage.html</welcome-file>
   </welcome-file-list>
@@ -84,6 +83,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MoneyView</servlet-name>
-    <url-pattern>/ReimbursementView</url-pattern>
+    <url-pattern>/MoneyView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserProfile</display-name>
+    <servlet-name>UserProfile</servlet-name>
+    <servlet-class>com.revature.servlets.UserProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserProfile</servlet-name>
+    <url-pattern>/UserProfile</url-pattern>
   </servlet-mapping>
 </web-app>
