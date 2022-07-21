@@ -28,44 +28,43 @@ public class MoneyView extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		request.getRequestDispatcher("managermainpage.html").forward(request, response);
+		request.getRequestDispatcher("managermainpage.html").include(request, response);
 		out.print("<br><br>");
-		
-
 		ArrayList<Category> allCategories = catDat.getAllCategories();
+		out.print("<script> console.log(\"this is line 34\")</script>");
 		out.print("	<div class=\"centeredBox\"  style=\"height:500px;width:500px\">\r\n"
 				+ "	<canvas id=\"myChart\"></canvas>\r\n"
 				+ "	</div>"
 				+ "<script>\r\n"
-				+ "  const config = {\r\n"
+				+ "  var config = {\r\n"
 				+ "    type: 'doughnut',\r\n"
-				+ "    data: {\\r\\n"
-				+ "    labels:[ " +findLabelSet(allCategories) +"]\"\r\n"
-				+ "    datasets: [{\\r\\n"
-				+ "      label: 'Expense by Category',\\r\\n"
-				+ "      borderColor: 'rgb(0, 0, 0)',\\r\\n"
-				+ "      data: [" + findAmountSet(allCategories) +"],\\r\\n"
-				+"      backgroundColor:[ "+ findColorSet(allCategories) + "]\\r\\n"
-				+"    }]\\r\\n"
-				+ "  };"
-				
+				+ "    data: {\r\n"
+				+ "    labels:[ " +findLabelSet(allCategories) +"],\r\n"
+				+ "    datasets: [{\r\n"
+				+ "      label: 'Expense by Category',\r\n"
+				+ "      borderColor: 'rgb(0, 0, 0)',\r\n"
+				+ "      data: [" + findAmountSet(allCategories) +"],\r\n"
+				+"      backgroundColor:[ "+ findColorSet(allCategories) + "]\r\n"
+				+"    }]\r\n"
+				+ "  },\r\n"
 				+ "  				  options:{\r\n"
 				+ "					  plugins:{\r\n"
 				+ "					  legend:{\r\n"
 				+ "			                display: true,\r\n"
 				+ "			                labels: {\r\n"
-				+ "			                    color: 'black'\r\n"
+				+ "			                    color: 'black',\r\n"
+				+ "								font: {\r\n"
+				+ "									size: 16 \r\n}"
 				+ "			                }\r\n"
 				+ "					  }\r\n"
 				+ "					  }\r\n"
 				+ "				  }"
 				+ "  };\r\n"
-				+ "  const myChart = new Chart(\r\n"
+				+ "  var myChart = new Chart(\r\n"
 				+ "    document.getElementById('myChart'),\r\n"
 				+ "    config\r\n"
 				+ "  );\r\n"
 				+ "</script>"
-				
 				);
 						
 		

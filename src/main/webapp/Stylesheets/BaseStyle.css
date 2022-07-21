@@ -35,6 +35,15 @@ th, td{
 	font-size: 1.25em;
 }
 
+.centeredBox h4{
+	font-size: 1.55em;
+	color:rgb(38, 167, 26);
+}
+
+.centeredBox p{
+	font-size: 1.25em;
+	color:rgb(28, 26, 167);
+}
 
 
 

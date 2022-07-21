@@ -14,8 +14,11 @@
 		<br>
 		<h1>Manager Dashboard</h1>
 		<br>
+		<form action="UserProfile" method="get" style="float: right;">
+			<input type="submit" value="See My User Profile">
+		</form>
 		<hr>
-		<h4>Approve Ticket by Number</h4>
+		<h3>Approve Ticket by Number</h3>
 		<form action="ApproveTicket" method="POST">
 			<input type="number" name="ticketNumber" value="Ticket Number" id="ticketNumber" required>Ticket Number <br> <input type="radio"
 				name="appDen" value="Approve">Approve <input type="radio" name="appDen" value="Deny">Deny <input type="submit"
@@ -39,45 +42,6 @@
 			<input type="submit" value="See Total Reimbursements by Category">
 		</form>
 	</div>
-<!-- 	<div class="centeredBox"  style="height:500px;width:500px"> -->
-<!-- 					<canvas id="myChart" style="color: black"></canvas> -->
-<!-- 				</div> -->
-<!-- 				<script> -->
-				
-<!-- 				const config = { -->
-<!-- 				  type: 'doughnut', -->
-<!-- 				   data: { -->
-<!-- 				 labels:['food', 'lodging', 'travel', 'other'], -->
-<!-- 				 color: 'rgb(0, 0, 0)', -->
-<!-- 				  datasets: [{ -->
-<!-- 				     label: 'Expense by Category', -->
-<!-- 				  	 borderColor: 'rgb(0, 0, 0)', -->
-<!-- 				    data: [225, 250, 4650, 15], -->
-<!-- 				    backgroundColor:['red', 'green', 'blue', 'yellow'], -->
-				    
-<!-- 				   }], -->
-<!-- 				  }, -->
-<!-- 				  options:{ -->
-<!-- 					  plugins:{ -->
-<!-- 					  legend:{ -->
-<!-- 			                display: true, -->
-<!-- 			                labels: { -->
-<!-- 			                    color: 'black' -->
-<!-- 			                } -->
-<!-- 					  } -->
-<!-- 					  } -->
-<!-- 				  } -->
-<!-- 				  }; -->
-				
-<!-- 				  const myChart = new Chart( -->
-					
-<!-- 				   document.getElementById('myChart'), -->
-<!-- 				   config -->
-<!-- 				  ); -->
-<!-- 				</script> -->
-				
-
-
 
 </body>
 

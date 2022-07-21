@@ -20,7 +20,7 @@ public class CategoryDatabase {
 			while (rs.next()) {
 				Category cat = new Category(rs.getString(1), rs.getString(2), rs.getInt(3));
 				allCategories.add(cat);
-			System.out.println(cat.toString());
+
 
 			}
 			findPercentages(allCategories);
@@ -40,14 +40,12 @@ public class CategoryDatabase {
 
 		for (Category cat:categories) {
 			totalExpense = (totalExpense + cat.getAmount());
-			System.out.println(totalExpense);
+
 
 		}
 		
 		for (Category cat:categories) {
 			percent = ((cat.getAmount()/totalExpense) * 100);
-			System.out.println(cat.getAmount());
-			System.out.println(percent);
 			cat.setPercentage(percent);
 
 		}

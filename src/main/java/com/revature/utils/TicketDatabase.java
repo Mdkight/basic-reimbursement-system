@@ -84,6 +84,7 @@ public class TicketDatabase {
 				}else {
 					submitTime = null;
 				}	
+				
 //				resolveTime =resolveTimestamp.ifPresent(toLocalDateTime().truncatedTo(ChronoUnit.MINUTES));
 				
 				Ticket ticket = new Ticket(reimId, accepted, amount, description, reimType, resolved, authorId,
