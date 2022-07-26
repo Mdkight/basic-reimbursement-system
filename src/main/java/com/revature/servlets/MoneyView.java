@@ -30,6 +30,8 @@ public class MoneyView extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.getRequestDispatcher("managermainpage.html").include(request, response);
 		out.print("<br><br>");
+		
+			
 		ArrayList<Category> allCategories = catDat.getAllCategories();
 		out.print("<script> console.log(\"this is line 34\")</script>");
 		out.print("	<div class=\"centeredBox\"  style=\"height:500px;width:500px\">\r\n"
@@ -66,7 +68,6 @@ public class MoneyView extends HttpServlet {
 				+ "  );\r\n"
 				+ "</script>"
 				);
-						
 		
 		
 
@@ -100,7 +101,6 @@ public class MoneyView extends HttpServlet {
 		String amountSet = "";
 		for (Category cat : allCategories) {
 			int amount = cat.getAmount();
-			DecimalFormat df = new DecimalFormat("####0.0");
 			
 			amountSet +=amount+", ";
 		}

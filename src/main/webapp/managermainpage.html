@@ -38,9 +38,14 @@
 			</div>
 		</div>
 		<br> <br>
-		<form action="MoneyView" method="POST">
-			<input type="submit" value="See Total Reimbursements by Category">
+		<form action="MoneyView" method="POST" style="display: inline-block;">
+			<input type="hidden" name="sortBy" value="Category">
+			<input type="submit" value="See Approved Reimbursements by Category">
 		</form>
+<!-- 				<form action="MoneyView" method="POST" style="display: inline-block;"> -->
+<!-- 			<input type="hidden" name="sortBy" value="Month"> -->
+<!-- 			<input type="submit" value="See Total Reimbursements by Month Submitted"> -->
+<!-- 		</form> -->
 	</div>
 
 </body>

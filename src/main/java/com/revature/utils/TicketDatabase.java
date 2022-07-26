@@ -3,6 +3,7 @@ package com.revature.utils;
 import java.sql.Connection;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Optional;
@@ -243,5 +244,23 @@ public class TicketDatabase {
 	}
 	
 
+	public HashMap<Integer, Integer> ticketsByMonth(){
+		HashMap<Integer, Integer> ticketsByMonth = new HashMap<Integer, Integer>();
+		try {
+			Connection conn = ConnectionUtils.getInstance().getConnection();
+			PreparedStatement fetchTickets = conn.prepareStatement("SELECT extract(month from resolvetime), sum(amount) FROM reimbursements where accepted='true' group by extract(month from resolvetime)");
+			ResultSet rs = fetchTickets.executeQuery();
+			while (rs.next()) {
+				ticketsByMonth.put(rs.getInt(1), rs.getInt(2));
+				
+
+			}
+			return ticketsByMonth;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ticketsByMonth;
+	}
 
 }

@@ -25,6 +25,7 @@ public class UserProfile extends HttpServlet {
 		response.setContentType("text/html");
 		HttpSession session=request.getSession();
 		Employee emp = empDat.getEmployee((String) session.getAttribute("username"));
+		
 		out.print("<link rel=\"stylesheet\" href=\"Stylesheets/BaseStyle.css\">"
 				+ " <title>Document</title>");
 		out.print("<style>.centeredBox p{\r\n"

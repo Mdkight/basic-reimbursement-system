@@ -14,7 +14,7 @@ public class CategoryDatabase {
 
 		try {
 			Connection conn = ConnectionUtils.getInstance().getConnection();
-			PreparedStatement stmt = conn.prepareStatement("select categories.reimbursementtype, categories.reimColor, sum(reimbursements.amount) from reimbursements inner join categories on reimbursements.reimbursementtype = categories.reimbursementtype group by categories.reimbursementtype");
+			PreparedStatement stmt = conn.prepareStatement("select categories.reimbursementtype, categories.reimColor, sum(reimbursements.amount) from reimbursements  inner join categories on reimbursements.reimbursementtype = categories.reimbursementtype where reimbursements.accepted='true' group by categories.reimbursementtype");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
